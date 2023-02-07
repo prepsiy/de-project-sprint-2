@@ -2,3 +2,21 @@
 Вендор №3 этот процент достигает 10%
 
 Не смог выйти на эти показатели
+
+***
+
+Извините, что так надолго пропал.
+
+Замечание:
+"Подскажи, где выполняется это условие?
+"Свяжите её с созданными справочниками shipping_country_rates, shipping_agreement, shipping_transfer и константной информации о доставке shipping_plan_datetime, payment_amount, vendorid.""
+
+Ответ:
+shipping_country_rates джойнится с таблицей shipping_country_rates по shipping_country и shipping_country_base_rate. Эти поля одноимённы с таблицей shipping.
+
+Когда создавал таблицы shipping_agreement и shipping_transfer - заполнение было из текстовой колонки *_description. Чтобы соединить полученные строки я в новые таблицы добавлял исходную строку *_description и затем соединял по ней с таблицей shipping.
+На примере заполнения таблицы shipping_agreement:
+vendor_agreement_description разбивается на 4 колонки agreementid, agreement_number, agreement_rate, agreement_commission. Но я дополнительно добавляю исходную строку vendor_agreement_description. При заполнении таблицы shipping_info мне понадобится agreementid и я джойню по vendor_agreement_description. 
+
+shipping_plan_datetime, payment_amount, vendorid - это поля shipping - оттуда и беру данные. 
+
